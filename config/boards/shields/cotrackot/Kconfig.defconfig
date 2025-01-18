@@ -1,0 +1,6 @@
+if SHIELD_COTRACKOT
+
+config ZMK_KEYBOARD_NAME
+default "cotrackot"
+
+endif
