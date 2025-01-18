@@ -14,10 +14,9 @@
 
 / {
     chosen {
-        zmk, kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
     };
-    
+
     matrix_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <7>; // Length of the "col-gpios" array — starts at 0
