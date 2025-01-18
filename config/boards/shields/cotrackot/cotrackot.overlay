@@ -6,7 +6,9 @@
         zmk, kscan = default_kscan;
         zmk,physical-layout = &physical_layout0;
     };
+};
 
+/ {
     default_transform: matrix_transform {
         compatible = "zmk,matrix-transform";
         columns = <6>; // Length of the "col-gpios" array — starts at 0
@@ -18,7 +20,9 @@
                     RC(2,6) RC(1,6) RC(0,6)       RC(2,0)       RC(3,6) RC(4,6) RC(5,6)
         >;
     };
-        
+};        
+
+/ {
     default_kscan: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label: "default_kscan";
