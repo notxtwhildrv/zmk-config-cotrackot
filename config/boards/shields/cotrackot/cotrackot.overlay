@@ -7,12 +7,16 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "cotrackot-layouts.dtsi"
 
+&physical_layout0 {
+    transform = <&default_transform>;
+};
+
 / {
     chosen {
         zmk,physical-layout = &physical_layout0;
     };
 
-    matrix_transform: keymap_transform_0 {
+    default_transform: keymap_transform0 {
         compatible = "zmk,matrix-transform";
         columns = <7>; // Length of the "col-gpios" array — starts at 0
         rows = <6>; // Length of the "row-gpios" array — starts at 0
