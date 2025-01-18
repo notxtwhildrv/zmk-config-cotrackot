@@ -7,11 +7,6 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "cotrackot-layouts.dtsi"
 
-
-&physical_layout0 {
-    transform = <&keymap_transform0>;
-};
-
 / {
     chosen {
         zmk,physical-layout = &physical_layout0;
