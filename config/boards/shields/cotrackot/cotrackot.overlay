@@ -328,7 +328,6 @@
 
 / {
     mouse_ps2: mouse_ps2 {
-		status = "disabled";
         compatible = "zmk,input-mouse-ps2";
 
 #ifdef MOUSE_PS2_DRIVER_UART
