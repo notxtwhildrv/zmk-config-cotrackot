@@ -18,6 +18,53 @@
 #define MOUSE_PS2_PIN_UNEXPOSED_RX <NRF_PSEL(UART_RX, 0, 28)>
 
 
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout0;
+    };
+
+    default_transform: keymap_transform0 {
+        compatible = "zmk,matrix-transform";
+        columns = <7>; // Length of the "col-gpios" array — starts at 0
+        rows = <6>; // Length of the "row-gpios" array — starts at 0
+        map = <
+    RC(0,5) RC(0,4) RC(0,3) RC(0,2) RC(0,1)                     RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)
+    RC(1,5) RC(1,4) RC(1,3) RC(1,2) RC(1,1)       RC(0,0)       RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)
+    RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)   RC(1,0) RC(3,0)   RC(5,1) RC(5,2) RC(5,3) RC(5,4) RC(5,5)
+                    RC(2,6) RC(1,6) RC(0,6)       RC(2,0)       RC(3,6) RC(4,6) RC(5,6)
+        >;
+    };
+    
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+        wakeup-source;
+
+        row-gpios
+            = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+
+        col-gpios
+            = <&pro_micro 21 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 20 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 14 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 16 GPIO_ACTIVE_HIGH>
+            ;
+
+        
+    }; 
+};
+
+
 &gpiote {
     interrupts = < 6 0 >;
 };
@@ -198,49 +245,114 @@
     transform = <&default_transform>;
 };
 
-/ {
-    chosen {
-        zmk,kscan = &kscan0;
-        zmk,physical-layout = &physical_layout0;
-    };
+#ifdef MOUSE_PS2_ALT_PINS
+    #undef MOUSE_PS2_PIN_SCL_PRO_MICRO
+    #undef MOUSE_PS2_PIN_SDA_PRO_MICRO
+    #undef MOUSE_PS2_PIN_SDA_PINCTRL
 
-    default_transform: keymap_transform0 {
-        compatible = "zmk,matrix-transform";
-        columns = <7>; // Length of the "col-gpios" array — starts at 0
-        rows = <6>; // Length of the "row-gpios" array — starts at 0
-        map = <
-    RC(0,5) RC(0,4) RC(0,3) RC(0,2) RC(0,1)                     RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)
-    RC(1,5) RC(1,4) RC(1,3) RC(1,2) RC(1,1)       RC(0,0)       RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)
-    RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)   RC(1,0) RC(3,0)   RC(5,1) RC(5,2) RC(5,3) RC(5,4) RC(5,5)
-                    RC(2,6) RC(1,6) RC(0,6)       RC(2,0)       RC(3,6) RC(4,6) RC(5,6)
-        >;
-    };
-    
-    kscan0: kscan_0 {
-        compatible = "zmk,kscan-gpio-matrix";
-        diode-direction = "col2row";
-        wakeup-source;
+    #define MOUSE_PS2_PIN_SCL_PRO_MICRO <&pro_micro 1 GPIO_ACTIVE_HIGH>
+    #define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 0 GPIO_ACTIVE_HIGH>
+    #define MOUSE_PS2_PIN_SDA_PINCTRL <NRF_PSEL(UART_RX, 0, 8)>
+#endif
 
-        row-gpios
-            = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            ;
+#define MOUSE_PS2_DT_PRESENT
 
-        col-gpios
-            = <&pro_micro 21 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 20 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 19 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 18 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 15 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 14 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 16 GPIO_ACTIVE_HIGH>
-            ;
+&pinctrl {
+	// This pinctrl state is used for receiving
+	// For `UART_TX`, set an unused and unexposed pin
+	// For `UART_RX`, set the PS/2 SDA pin number
+	uart0_ps2_default: uart0_ps2_default {
+		group1 {
+			psels = MOUSE_PS2_PIN_UNEXPOSED_TX,
+					MOUSE_PS2_PIN_SDA_PINCTRL;
+		};
+	};
 
-        
-    }; 
+	// Set this to the same pins as uart0_ps2_default
+	uart0_ps2_sleep: uart0_ps2_sleep {
+		group1 {
+			psels = MOUSE_PS2_PIN_UNEXPOSED_TX,
+					MOUSE_PS2_PIN_SDA_PINCTRL;
+			low-power-enable;
+		};
+	};
+
+	// The nrf52 UART controller is not compatible with the PS/2
+	// transmission frame. So the PS/2 UART driver doesn't use UART for
+	// transmissions and instead use GPIO bit-banging.
+	//
+	// When the driver switches to transmit mode, it frees up the SDA pin by
+    // switching the UART controller to unexposed/unused pins.
+	//
+	// Then it configures the GPIO controller to use the SCL and SDA pins
+	uart0_ps2_off: uart0_ps2_off {
+		group1 {
+			psels = MOUSE_PS2_PIN_UNEXPOSED_TX,
+					MOUSE_PS2_PIN_UNEXPOSED_RX;
+		};
+	};
 };
 
+
+#ifdef MOUSE_PS2_DRIVER_UART
+
+    &uart0 {
+        status = "disabled";
+        compatible = "nordic,nrf-uarte";
+
+        current-speed = MOUSE_PS2_UART_BAUD_RATE;
+        pinctrl-0 = <&uart0_ps2_default>;
+        pinctrl-1 = <&uart0_ps2_off>;
+
+        pinctrl-names = "default", "sleep";
+
+        uart_ps2: uart_ps2 {
+            status="disabled";
+            compatible = "uart-ps2";
+            scl-gpios = MOUSE_PS2_PIN_SCL_PRO_MICRO;
+            sda-gpios = MOUSE_PS2_PIN_SDA_PRO_MICRO;
+        };
+    };
+
+#else
+
+    / {
+        gpio_ps2: gpio_ps2 {
+            status = "disabled";
+
+            compatible = "gpio-ps2";
+            scl-gpios = MOUSE_PS2_PIN_SCL_PRO_MICRO;
+            sda-gpios = MOUSE_PS2_PIN_SDA_PRO_MICRO;
+        };
+    };
+
+#endif
+
+
+/ {
+    mouse_ps2: mouse_ps2 {
+		status = "disabled";
+        compatible = "zmk,input-mouse-ps2";
+
+#ifdef MOUSE_PS2_DRIVER_UART
+	    ps2-device = <&uart_ps2>;
+#else
+	    ps2-device = <&gpio_ps2>;
+#endif
+
+#ifdef MOUSE_PS2_PIN_RST_PRO_MICRO
+        rst-gpios = MOUSE_PS2_PIN_RST_PRO_MICRO;
+#endif
+    };
+
+    mouse_ps2_input_listener: mouse_ps2_input_listener {
+        compatible = "zmk,input-listener-ps2";
+        status = "disabled";
+
+        device = <&mouse_ps2>;
+
+		// Some of the available settings depend on the keymap. So they
+		// are adjusted in...
+		// zmk-config/config/includes/mouse_tp.dtsi
+    };
+};
