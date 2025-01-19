@@ -328,7 +328,7 @@
 
 / {
     mouse_ps2: mouse_ps2 {
-        compatible = "zmk,input-listener";
+        compatible = "zmk,input-mouse-ps2";
 
 #ifdef MOUSE_PS2_DRIVER_UART
 	    ps2-device = <&uart_ps2>;
