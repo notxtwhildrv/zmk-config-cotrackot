@@ -45,7 +45,7 @@
   //
   // Not all trackpoints support it and you have to enable
   // `tp-press-to-select;` in `&mouse_ps2` first.
-  #define U_MSS_TP_PT_I &mms MS_TP_PTS_THRESHOLD_INCR
+  #define U_MSS_TP_PT_I &mms MS_TP_PTS_TH\ESHOLD_INCR
   #define U_MSS_TP_PT_D &mms MS_TP_PTS_THRESHOLD_DECR
 
 
@@ -71,42 +71,13 @@
   #ifdef MOUSE_PS2_DT_PRESENT
 
    /*
-    * Input Listener Config
-    */
-
-    &mouse_ps2_input_listener {
-
-      // Adjust pointing device axes.
-      // This adjusts the values inside the zmk driver. Some
-      // trackpoints also allow you to adjust it in their firmware. Check
-      // the driver options below for more info.
-      xy-swap;
-      // x-invert;
-      // y-invert;
-
-      // Set the layer that should automatically activate when the mouse is
-      // moving.
-      layer-toggle = <MOUSE_TP>;
-
-      // How long the mouse needs to move for before the layer is activated (to
-      // avoid accidental activations while typing) (Default: 250)
-      layer-toggle-delay-ms = <250>;
-
-      // How long to wait, after the last mouse movement, before deactivating
-      // the layer (Default: 250)
-      layer-toggle-timeout-ms = <250>;
-    };
-
-
-   /*
     * Mouse Driver Settings
     */
 
     &mouse_ps2 {
 
       // How sensitive the TP is (Default: 128)
-      // tp-sensitivity = <128>;
-
+      // tp-sensitivity = <254>;
 
       // The maximum mouse movement speed the TP will accelarate to
       // (Default: 97)
@@ -131,7 +102,7 @@
       //
       // Alternatively consider achieving the same effect using the
       //  `input-listener` settings below.
-      // tp-xy-swap;
+       tp-xy-swap;
       // tp-x-invert;
       // tp-y-invert;
 
@@ -170,10 +141,6 @@
     // block, which prevents compilation and potential build errors when we
     // undefine HAS_MOUSE_TP in corne_tp.keymap
     &mouse_ps2  {
-      status = "okay";
-    };
-
-    &mouse_ps2_input_listener {
       status = "okay";
     };
 
