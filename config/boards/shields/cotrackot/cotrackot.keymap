@@ -10,7 +10,7 @@
 
 #define MAIN 0 
 #define MOUSE_TP 1
-
+#define MOUSE_TP_SET 2
 
 #define HAS_MOUSE_KEYS
 #define HAS_MOUSE_TP
