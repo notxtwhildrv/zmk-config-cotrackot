@@ -1,4 +1,4 @@
-
+#ifdef HAS_MOUSE_TP
   #include <dt-bindings/zmk/mouse.h>
   #include <dt-bindings/zmk/mouse_settings.h>
   #include <behaviors/mouse_keys.dtsi>
@@ -68,7 +68,35 @@
 
   // Only apply these settings on the side that has the TP connected
   // (usually the right side)
-   #ifdef MOUSE_PS2_DT_PRESENT
+  #ifdef MOUSE_PS2_DT_PRESENT
+
+   /*
+    * Input Listener Config
+    */
+
+    &mouse_ps2_input_listener {
+
+      // Adjust pointing device axes.
+      // This adjusts the values inside the zmk driver. Some
+      // trackpoints also allow you to adjust it in their firmware. Check
+      // the driver options below for more info.
+      xy-swap;
+      // x-invert;
+      // y-invert;
+
+      // Set the layer that should automatically activate when the mouse is
+      // moving.
+      layer-toggle = <MOUSE_TP>;
+
+      // How long the mouse needs to move for before the layer is activated (to
+      // avoid accidental activations while typing) (Default: 250)
+      layer-toggle-delay-ms = <250>;
+
+      // How long to wait, after the last mouse movement, before deactivating
+      // the layer (Default: 250)
+      layer-toggle-timeout-ms = <250>;
+    };
+
 
    /*
     * Mouse Driver Settings
@@ -77,7 +105,8 @@
     &mouse_ps2 {
 
       // How sensitive the TP is (Default: 128)
-      // tp-sensitivity = <254>;
+      // tp-sensitivity = <128>;
+
 
       // The maximum mouse movement speed the TP will accelarate to
       // (Default: 97)
@@ -102,9 +131,9 @@
       //
       // Alternatively consider achieving the same effect using the
       //  `input-listener` settings below.
-       tp-xy-swap;
-      //tp-x-invert;
-      //tp-y-invert;
+      // tp-xy-swap;
+      // tp-x-invert;
+      // tp-y-invert;
 
 
       // Set sampling rate
@@ -144,6 +173,10 @@
       status = "okay";
     };
 
+    &mouse_ps2_input_listener {
+      status = "okay";
+    };
+
     #ifdef MOUSE_PS2_DRIVER_UART
 
       &uart0 {
@@ -162,3 +195,4 @@
 
     #endif  // MOUSE_PS2_DRIVER_UART
   #endif  // MOUSE_PS2_DT_PRESENT
+#endif  // HAS_MOUSE_TP
