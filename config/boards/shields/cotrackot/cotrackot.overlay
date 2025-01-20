@@ -344,7 +344,7 @@
         device = <&mouse_ps2>;
         input-processors = 
             <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>
-        , <&zip_temp_layer 7 500>
+        , <&zip_temp_layer 1 500>
             ;
         scroller {
             layers = <9>;
