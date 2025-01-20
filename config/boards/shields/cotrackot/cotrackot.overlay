@@ -240,7 +240,9 @@
 #define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 0 GPIO_ACTIVE_HIGH>
 #define MOUSE_PS2_PIN_RST_PRO_MICRO <&pro_micro 9 GPIO_ACTIVE_HIGH>
 #define MOUSE_PS2_PIN_SDA_PINCTRL <NRF_PSEL(UART_RX, 0, 8)>
+
 #define MOUSE_PS2_UART_BAUD_RATE <14400>
+
 #define MOUSE_PS2_PIN_UNEXPOSED_TX <NRF_PSEL(UART_TX, 0, 27)>
 #define MOUSE_PS2_PIN_UNEXPOSED_RX <NRF_PSEL(UART_RX, 0, 28)>
 
@@ -296,6 +298,7 @@
 #ifdef MOUSE_PS2_DRIVER_UART
 
     &uart0 {
+        status = "disabled";
         compatible = "nordic,nrf-uarte";
 
         current-speed = MOUSE_PS2_UART_BAUD_RATE;
@@ -305,6 +308,7 @@
         pinctrl-names = "default", "sleep";
 
         uart_ps2: uart_ps2 {
+            status="disabled";
             compatible = "uart-ps2";
             scl-gpios = MOUSE_PS2_PIN_SCL_PRO_MICRO;
             sda-gpios = MOUSE_PS2_PIN_SDA_PRO_MICRO;
@@ -328,6 +332,7 @@
 
 / {
     mouse_ps2: mouse_ps2 {
+		status = "disabled";
         compatible = "zmk,input-mouse-ps2";
 
 #ifdef MOUSE_PS2_DRIVER_UART
@@ -339,5 +344,16 @@
 #ifdef MOUSE_PS2_PIN_RST_PRO_MICRO
         rst-gpios = MOUSE_PS2_PIN_RST_PRO_MICRO;
 #endif
+    };
+
+    mouse_ps2_input_listener: mouse_ps2_input_listener {
+        compatible = "zmk,input-listener-ps2";
+        status = "disabled";
+
+        device = <&mouse_ps2>;
+
+		// Some of the available settings depend on the keymap. So they
+		// are adjusted in...
+		// zmk-config/config/includes/mouse_tp.dtsi
     };
 };
