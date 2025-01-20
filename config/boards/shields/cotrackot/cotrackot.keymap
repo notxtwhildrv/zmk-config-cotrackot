@@ -9,6 +9,7 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define MAIN 0 
+#define MOUSE_TP 1
 
 
 #define HAS_MOUSE_KEYS
@@ -56,5 +57,33 @@
                                        &kp ESC     &kp ENTER    &kp SPACE      &kp A        &kp BSPC  &kp ENTER   &kp X
             >;
         };
+
+
+#ifdef HAS_MOUSE_TP
+
+    // Automatically activated when the mouse or trackpoint moves.
+    // Configured in `include/mouse_tp.dtsi`.
+    MouseTP_layer {
+      display-name = "TP";
+      bindings = <
+                &kp Q       &kp W      &kp E       &kp R        &kp T                       &kp Y     &kp U       &kp I         &kp O        &kp P          
+                &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &kp X        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
+                &kp Z       &kp X      &kp C       &kp V        &kp B      &kp Y  &kp Z     &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
+                                       &kp ESC     &kp ENTER    &kp SPACE      &kp A        &kp BSPC  &kp ENTER   &kp X
+            >;
+    };
+
+    // You can find the defines for the actual key press behaviors in `include/mouse_tp.dtsi`.
+    MouseSettings_layer {
+      display-name = "TP Set";
+      bindings = <
+                &kp Q       &kp W      &kp E       &kp R        &kp T                       &kp Y     &kp U       &kp I         &kp O        &kp P          
+                &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &kp X        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
+                &kp Z       &kp X      &kp C       &kp V        &kp B      &kp Y  &kp Z     &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
+                                       &kp ESC     &kp ENTER    &kp SPACE      &kp A        &kp BSPC  &kp ENTER   &kp X
+            >;
+    };
+
+#endif
     };
 };
