@@ -49,10 +49,10 @@
       MAIN_layer {
           display-name = "Default";
           bindings = <
-              &kp Q       &kp W      &kp E       &kp R        &kp T                                          &kp Y     &kp U       &kp I         &kp O        &kp P          
-              &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK                       &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
-              &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &mt &studio_unlock ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
-                                     &kp TAB     &kp SPACE    &kp ENTER      &mkp RCLK                       &bt BT_SEL 0 &bt BT_CLR   &kp TAB
+              &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
+              &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
+              &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
+                                     &kp TAB     &kp SPACE    &kp ENTER      &mkp RCLK        &bt BT_SEL 0 &bt BT_CLR   &kp TAB
           >;
       };
 
@@ -64,10 +64,10 @@
     MouseTP_layer {
       display-name = "TP";
       bindings = <
-                &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
-                &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
-                &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
-                                       &kp TAB     &kp SPACE    &kp ENTER       &mkp RCLK       &bt BT_SEL 0 &bt BT_CLR &kp TAB
+              &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
+              &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
+              &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
+                                     &kp TAB     &kp SPACE    &kp ENTER      &mkp RCLK        &bt BT_SEL 0 &bt BT_CLR   &kp TAB
             >;
     };
 
@@ -75,10 +75,10 @@
     MouseSettings_layer {
       display-name = "TP Set";
       bindings = <
-                &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
-                &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
-                &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
-                                       &kp TAB     &kp SPACE    &kp ENTER       &mkp RCLK       &kp BSPC  &kp ENTER   &kp TAB
+              &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
+              &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
+              &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
+                                     &kp TAB     &kp SPACE    &kp ENTER      &mkp RCLK        &bt BT_SEL 0 &bt BT_CLR   &kp TAB
             >;
     };
 
