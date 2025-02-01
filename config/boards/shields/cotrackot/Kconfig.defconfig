@@ -1,6 +1,9 @@
 if SHIELD_COTRACKOT
 
 config ZMK_KEYBOARD_NAME
-default "cotrackot"
+    default "cotrackot"
+
+config ZMK_BLE
+    default y
 
 endif
