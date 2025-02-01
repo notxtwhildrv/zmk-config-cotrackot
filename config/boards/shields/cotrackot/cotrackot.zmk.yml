@@ -1,6 +1,6 @@
 file_format: "1"
-id: cotrackot
-name: cotrackot
+id: Cotrackot
+name: Cotrackot
 type: shield
 url: https://github.com/Kneecrust/zmk-config-cotrackot
 requires: [pro_micro]

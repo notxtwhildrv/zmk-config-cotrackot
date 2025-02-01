@@ -9,8 +9,11 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define MAIN 0 
-#define MOUSE_TP 1
-#define MOUSE_TP_SET 2
+#define SYM 1 
+#define NUM 2 
+#define MOUSE_TP 3
+#define MOUSE_TP_SET 4
+#define SCROLL 5
 
 #define HAS_MOUSE_KEYS
 #define HAS_MOUSE_TP
@@ -43,19 +46,71 @@
 #endif  // HAS_MOUSE_TP
 
 / {
+
+  combos { compatible = "zmk,combos"; };
+
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+        };
+
+        ltq: ltq {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LTQ";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <180>;
+        };
+
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "AUTO_SHIFT";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <135>;
+            quick-tap-ms = <0>;
+        };
+    };
+
+
     keymap {
-        compatible = "zmk,keymap";
+      compatible = "zmk,keymap";
 
       MAIN_layer {
           display-name = "Default";
-          bindings = <
-              &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
-              &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
-              &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
-                                     &kp TAB     &kp SPACE    &kp ENTER      &mkp RCLK        &bt BT_SEL 1 &bt BT_CLR   &kp TAB
-          >;
+            bindings = <
+              &kp Q        &kp W       &kp E       &kp R         &kp T                              &kp Y        &kp U         &kp I        &kp O       &kp P              
+              &hm LCTRL A  &hm LALT S  &hm LGUI D  &hm LSHFT F   &kp G              &mkp MCLK       &kp H        &hm RSHFT J   &hm RGUI K   &hm RALT L  &hm RCTRL SEMICOLON 
+              &kp Z        &kp X       &kp C       &kp V         &kp B        &mkp LCLK  &mkp RCLK  &kp N        &kp M         &kp COMMA    &kp PERIOD  &kp SLASH            
+                                       &kp LCTRL   &mo 1         &lt 2 SPACE        &mkp RCLK       &lt 1 ENTER  &lt 5 ESC     &mo 3       
+            >; 
       };
-
+      SYM {
+            bindings = <
+              &kp GRAVE     &kp CARET     &kp POUND     &kp AMPS      &kp PIPE                       &kp PLUS    &kp LBRC   &kp RBRC   &kp N9  &kp N0   &trans
+              &kp EXCL      &kp QMARK     &kp COLON     &kp EQUAL     &kp DLLR       &trans          &kp MINUS   &kp LPAR   &kp RPAR   &kp LT  &kp GT   &trans
+              &kp PRCNT     &kp QMARK     &kp STAR      &kp PLUS      &kp BSLH    &trans  &trans     &kp AT      &kp LBKT   &kp RBKT   &trans  &trans   &trans
+                                          &trans        &trans        &trans         &trans          &trans      &kp RSHFT  &trans   
+            >;
+      };
+      NUM {
+            bindings = <
+              &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                   &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans 
+              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &trans  &trans  &trans  &trans  &trans
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                              &trans  &trans  &trans       &trans      &trans  &trans  &trans  
+            >;
+      };
 
 #ifdef HAS_MOUSE_TP
 
@@ -64,22 +119,32 @@
     MouseTP_layer {
       display-name = "TP";
       bindings = <
-              &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
-              &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
-              &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
-                                     &kp TAB     &kp SPACE    &kp ENTER      &mkp RCLK        &bt BT_SEL 0 &bt BT_CLR   &kp TAB
-            >;
+              &trans  &trans  &trans  &trans  &trans                   &trans  &trans  &trans  &trans  &trans  &trans 
+              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &trans  &trans  &trans  &trans  &trans
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                              &trans  &trans  &trans       &trans      &trans  &trans  &trans       
+            >; 
     };
 
     // You can find the defines for the actual key press behaviors in `include/mouse_tp.dtsi`.
     MouseSettings_layer {
-      display-name = "TP Set";
+      display-name = "TP Settings";
       bindings = <
-              &kp Q       &kp W      &kp E       &kp R        &kp T                           &kp Y     &kp U       &kp I         &kp O        &kp P          
-              &mt LCTRL A &mt LALT S &mt LGUI D  &mt LSHFT F  &kp G          &mkp MCLK        &kp H     &mt RSHFT J &mt RGUI K    &mt RALT L   &mt RCTRL SEMI
-              &kp Z       &kp X      &kp C       &kp V        &kp B      &mkp LCLK  &kp ESC   &kp N     &kp M       &kp COMMA     &kp DOT      &kp SLASH       
-                                     &kp TAB     &kp SPACE    &kp ENTER      &mkp RCLK        &bt BT_SEL 0 &bt BT_CLR   &kp TAB
-            >;
+              &trans  &trans  &trans  &trans  &trans                   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR 
+              &trans  &trans  &trans  &trans  &trans        &trans     &trans        &trans        &trans        &trans        &trans        &trans
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans        &trans        &trans        &trans        &trans        &trans
+                              &trans  &trans  &trans       &trans      &trans        &trans        &trans         
+            >; 
+    };
+
+    SCROLL {
+      display-name = "Scroll";
+      bindings = <
+              &trans  &trans  &trans  &trans  &trans                   &trans  &trans    &kp UP    &trans     &trans  &trans 
+              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
+                              &trans  &trans  &trans       &trans      &trans  &trans    &trans          
+            >; 
     };
 
 #endif
