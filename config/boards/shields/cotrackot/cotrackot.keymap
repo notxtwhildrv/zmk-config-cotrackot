@@ -97,17 +97,17 @@
       };
       SYM {
             bindings = <
-              &kp GRAVE     &kp CARET     &kp POUND     &kp AMPS      &kp PIPE                       &kp PLUS    &kp LBRC   &kp RBRC   &kp N9  &kp N0   &trans
-              &kp EXCL      &kp QMARK     &kp COLON     &kp EQUAL     &kp DLLR       &trans          &kp MINUS   &kp LPAR   &kp RPAR   &kp LT  &kp GT   &trans
-              &kp PRCNT     &kp QMARK     &kp STAR      &kp PLUS      &kp BSLH    &trans  &trans     &kp AT      &kp LBKT   &kp RBKT   &trans  &trans   &trans
+              &kp GRAVE     &kp CARET     &kp POUND     &kp AMPS      &kp PIPE                       &kp PLUS    &kp LBRC   &kp RBRC   &kp N9  &kp N0   
+              &kp EXCL      &kp QMARK     &kp COLON     &kp EQUAL     &kp DLLR       &trans          &kp MINUS   &kp LPAR   &kp RPAR   &kp LT  &kp GT   
+              &kp PRCNT     &kp QMARK     &kp STAR      &kp PLUS      &kp BSLH    &trans  &trans     &kp AT      &kp LBKT   &kp RBKT   &trans  &trans   
                                           &trans        &trans        &trans         &trans          &trans      &kp RSHFT  &trans   
             >;
       };
       NUM {
             bindings = <
-              &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                   &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans 
-              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &trans  &trans  &trans  &trans  &trans
-              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+              &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                   &kp N6  &kp N7  &kp N8  &kp N9  &kp N0 
+              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &trans  &trans  &trans  &trans 
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  
                               &trans  &trans  &trans       &trans      &trans  &trans  &trans  
             >;
       };
@@ -119,9 +119,9 @@
     MouseTP_layer {
       display-name = "TP";
       bindings = <
-              &trans  &trans  &trans  &trans  &trans                   &trans  &trans  &trans  &trans  &trans  &trans 
-              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &trans  &trans  &trans  &trans  &trans
-              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+              &trans  &trans  &trans  &trans  &trans                   &trans  &trans  &trans  &trans  &trans 
+              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &trans  &trans  &trans  &trans  
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans
                               &trans  &trans  &trans       &trans      &trans  &trans  &trans       
             >; 
     };
@@ -130,9 +130,9 @@
     MouseSettings_layer {
       display-name = "TP Settings";
       bindings = <
-              &trans  &trans  &trans  &trans  &trans                   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR 
-              &trans  &trans  &trans  &trans  &trans        &trans     &trans        &trans        &trans        &trans        &trans        &trans
-              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans        &trans        &trans        &trans        &trans        &trans
+              &trans  &trans  &trans  &trans  &trans                   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  
+              &trans  &trans  &trans  &trans  &trans        &trans     &bt BT_CLR    &trans        &trans        &trans        &trans       
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans        &trans        &trans        &trans        &trans      
                               &trans  &trans  &trans       &trans      &trans        &trans        &trans         
             >; 
     };
@@ -140,9 +140,9 @@
     SCROLL {
       display-name = "Scroll";
       bindings = <
-              &trans  &trans  &trans  &trans  &trans                   &trans  &trans    &kp UP    &trans     &trans  &trans 
-              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
+              &trans  &trans  &trans  &trans  &trans                   &trans  &trans    &kp UP    &trans     &trans  
+              &trans  &trans  &trans  &trans  &trans        &trans     &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  
+              &trans  &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans    &trans    &trans     &trans 
                               &trans  &trans  &trans       &trans      &trans  &trans    &trans          
             >; 
     };
