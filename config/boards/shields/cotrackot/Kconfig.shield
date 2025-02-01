@@ -1,2 +1,2 @@
 config SHIELD_COTRACKOT
-def_bool $(shields_list_contains, cotrackot)
+def_bool $(shields_list_contains,cotrackot)
