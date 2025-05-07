@@ -39,7 +39,7 @@
   #define U_THUMB_INNER &none
 #endif  // HAS_MOUSE_KEYS
 
-#ifdef HAS_MOUSE_TP
+//#ifdef HAS_MOUSE_TP
   #define U_TOG_TP_SET &tog MOUSE_TP_SET
 #else
   #define U_TOG_TP_SET &none
