@@ -7,7 +7,7 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "cotrackot-layouts.dtsi"
 
-// #define MOUSE_PS2_DRIVER_UART
+#define MOUSE_PS2_DRIVER_UART
 #define MOUSE_PS2_PIN_SCL_PRO_MICRO <&pro_micro 16 GPIO_ACTIVE_HIGH>
 #define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 10 GPIO_ACTIVE_HIGH>
 #define MOUSE_PS2_PIN_RST_PRO_MICRO <&pro_micro 9 GPIO_ACTIVE_HIGH>
